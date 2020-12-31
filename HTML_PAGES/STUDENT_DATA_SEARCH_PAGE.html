@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SEARCH PAGE</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+    body{
+     background-color:powderblue;
+    }
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {background-color: #72c8d2;}
+</style>
+</head>
+<body>
+<form action= >
+    <b>Enter Roll number:</b><input type="text" name="roll">
+    <input type="submit" value="search" onclick='this.form.action="search";' >
+    <input type="submit" value="List of failed students" onclick='this.form.action="fail";'>
+    <input type="submit" value="Display Pie-Chart" onclick='this.form.action="pie";'>
+</form>
+
+
+<b> STUDENT MARKS:</b>
+ {{error}}
+<!-- TABLE FOR SEARCHING A PARTICULAR ROLL NUMBER -->
+<table class="table table-hover" style="border: 1px solid black" width="100%">
+    <tr style="border: 1px solid black" width="100%">
+    {% for key in headings1 %}
+         <th style="border: 1px solid black">{{key}}</th>
+    {% endfor %}
+     </tr>
+    <tr style="border: 1px solid black" width="100%">
+    {% for key,values in student_data.items %}
+    {% for key2,values2 in values.items %}
+       <td style="border: 1px solid black" width="100%"> {{values2}}</td>
+    {% endfor %}
+    {% endfor %}
+    </tr>
+
+</table>
+<!-- TABLE FOR LIST OF FAILED STUDENTS WITH MARKS-->
+<table class="table table-hover" style="border: 1px solid black" width="100%">
+    <tr style="border: 1px solid black">
+    {% for key in headings %}
+         <th style="border: 1px solid black">{{key}}</th>
+    {% endfor %}
+    </tr>
+ {% for key,value in student_data1.items %}
+    <tr style="border: 1px solid black">
+    {% for key2,value2 in value.items %}
+    <td style="border: 1px solid black">{{value2}}</td>
+    {% endfor %}
+    </tr>
+ {% endfor %}
+</table>
+
+</body>
+</html>
